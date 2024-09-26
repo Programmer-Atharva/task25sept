@@ -1,0 +1,48 @@
+Human Activity Recognition Using Accelerometer Data
+
+
+Dataset
+The dataset used in this project is the WISDM dataset, which contains accelerometer data collected from 51 users performing six different activities: walking, jogging, upstairs, downstairs, sitting, and standing. 
+The dataset consists of 1,098,207 examples, with each example representing a single data point from the accelerometer.
+
+
+
+Data Preprocessing
+The dataset is preprocessed to remove any errors and inconsistencies. 
+The data is read into a native Python file and then processed to remove any extra spaces and semicolons. 
+The processed data is then converted into a pandas DataFrame for easier manipulation.
+
+
+
+Data Balancing
+The dataset is highly imbalanced, with some activities having significantly more examples than others. 
+To address this issue, we take only the first 3555 lines for each activity into separate lists and create a balanced dataset using these lists.
+
+
+
+Data Standardization
+The feature space is standardized using the StandardScaler from scikit-learn to bring all the values into the same range.
+
+Frame Preparation
+The data is divided into frames of 4 seconds, with a hop size of 40 observations. 
+The label for each frame is the mode of the labels for the 80 observations that make up the frame.
+
+2D CNN Model
+A Sequential model is used to build the 2D CNN. 
+The model consists of two Conv2D layers with ReLU activation, followed by a Flatten layer, two Dense layers with ReLU activation, and a final Dense layer with softmax activation.
+
+
+
+Model Compilation and Training
+The model is compiled with the Adam optimizer and sparse categorical cross-entropy loss. 
+The model is trained on the training data for 10 epochs, with validation on the test data.
+
+Model Evaluation
+The model's accuracy and loss are plotted using the plot_learningCurve function. 
+The model's performance is evaluated using a confusion matrix, which shows that the model is getting 100% accuracy for sitting and standing, but is getting confused between upstairs and downstairs.
+
+
+
+Conclusion
+The model achieves a decent accuracy for human activity recognition using accelerometer data. 
+To further improve the accuracy, we can try training the model with more data.
